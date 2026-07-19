@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insiders Digital — Unique & Engaging Software</title>
+  <meta name="description" content="Insiders Digital Pty Ltd develops and distributes unique and engaging software. Home of Guilty Party — the daily mystery puzzle game." />
+  <link rel="icon" href="assets/img/guilty-party-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --red: #c0392b;
+      --red-light: #e74c3c;
+      --gold: #c9a84c;
+      --white: #f5f5f5;
+      --muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse at top, #1a0a0a 0%, var(--black) 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red-light);
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--red);
+      color: white;
+      text-decoration: none;
+      padding: 0.875rem 2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .hero-cta:hover { background: var(--red-light); transform: translateY(-1px); }
+
+    /* SECTION */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--red);
+      margin: 1.25rem 0;
+    }
+
+    /* APP FEATURE */
+    #apps { background: var(--dark); }
+
+    .app-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .app-feature { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+    }
+
+    .app-feature-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .app-feature-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(192,57,43,0.15);
+      border: 1px solid rgba(192,57,43,0.3);
+      color: var(--red-light);
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .feature-list li::before {
+      content: '▸';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    .app-store-btn {
+      display: inline-block;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      transition: opacity 0.2s;
+    }
+
+    .app-store-btn:hover { opacity: 0.85; }
+    .app-store-btn.coming-soon {
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      cursor: default;
+    }
+
+    .screenshots {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .screenshots img {
+      width: 160px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+    }
+
+    .screenshots img:nth-child(2) {
+      margin-top: 2rem;
+    }
+
+    /* ABOUT */
+    #about { background: var(--black); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .value-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .value-card h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    .value-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--dark); }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+      max-width: 600px;
+      margin-top: 3rem;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.05rem;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .contact-email:hover { border-color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-logo span { color: var(--gold); }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      color: #444;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Insiders <span>Digital</span></a>
+    <ul class="nav-links">
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Insiders Digital Pty Ltd</p>
+      <h1>Unique &amp; Engaging<br /><em>Software</em></h1>
+      <p>We develop and distribute original apps and games that challenge, entertain, and keep you coming back every day.</p>
+      <a href="#apps" class="hero-cta">View Our Apps ↓</a>
+    </div>
+  </section>
+
+  <!-- APPS -->
+  <section id="apps">
+    <div class="container">
+      <p class="section-eyebrow">Our Apps</p>
+      <h2 class="section-title">What We've Built</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Each app is designed around a single, compelling idea — built to be played daily and talked about.</p>
+
+      <div class="app-feature">
+        <div class="app-feature-text">
+          <div class="app-badge">🔍 Daily Mystery Game</div>
+          <h2>Guilty Party</h2>
+          <p>A new mystery drops every day at midnight. Read the case file, study the suspects, examine the clues — then make your accusation. You only get one chance.</p>
+          <ul class="feature-list">
+            <li>8 mystery types: Murder, Heist, Disappearance, Espionage, Art Forgery, Blackmail, Theft, Cold Case</li>
+            <li>AI-generated cases — no two mysteries are ever the same</li>
+            <li>Climb 8 detective ranks from Rookie to Legendary Sleuth</li>
+            <li>One case per day — miss it and it's gone forever</li>
+          </ul>
+          <a href="#" class="app-store-btn coming-soon">Coming Soon to the App Store</a>
+        </div>
+        <div class="screenshots">
+          <img src="assets/img/guilty-party-home.png" alt="Guilty Party home screen" />
+          <img src="assets/img/guilty-party-reveal.png" alt="Guilty Party verdict reveal" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-eyebrow">About Us</p>
+      <h2 class="section-title">Insiders Digital Pty Ltd</h2>
+      <div class="divider"></div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>Insiders Digital is an Australian software company focused on developing and distributing unique and engaging apps and games. We build products that are original in concept, polished in execution, and designed to become part of your daily routine.</p>
+          <p>Based in Sydney, Australia, we are a small independent studio with a big focus on quality. Every product we ship is something we'd want to use ourselves.</p>
+          <p>ACN: 698 801 151</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <h4>Original</h4>
+            <p>Every product starts with a genuinely new idea — not a clone or a trend-chaser.</p>
+          </div>
+          <div class="value-card">
+            <h4>Daily</h4>
+            <p>We build for daily habits. Apps that earn a place in your routine.</p>
+          </div>
+          <div class="value-card">
+            <h4>Polished</h4>
+            <p>Design and detail matter. We don't ship until it feels right.</p>
+          </div>
+          <div class="value-card">
+            <h4>Independent</h4>
+            <p>No investors, no bloat. Just a focused team building things we love.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-eyebrow">Get in Touch</p>
+      <h2 class="section-title">Contact Us</h2>
+      <div class="divider"></div>
+
+      <div class="contact-box">
+        <p>For general enquiries, business matters, or app support, reach us at:</p>
+        <a href="mailto:hello@insidersdigital.com.au" class="contact-email">
+          ✉ hello@insidersdigital.com.au
+        </a>
+        <p style="margin-top: 1.5rem; font-size: 0.875rem;">For app-specific support, please visit our <a href="support.html" style="color: var(--gold);">Support page</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-logo">Insiders <span>Digital</span></p>
+    <ul class="footer-links">
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Insiders Digital Pty Ltd (ACN 698 801 151) · Sydney, Australia · All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
